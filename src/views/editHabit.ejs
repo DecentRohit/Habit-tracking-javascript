@@ -1,0 +1,17 @@
+
+<head>
+    <title>Edit Habit</title>
+    <link rel="stylesheet" href="/editHabit.css">
+</head>
+<body>
+    <h1>Edit Habit</h1>
+    <form action="/habits/<%= habit._id %>?_method=PUT" method="POST">
+        <label for="name">Habit Name:</label>
+        <input type="text" name="habit[name]" id="name" value="<%= habit.name %>">
+        <label for="frequency">Frequency:</label>
+        <input type="text" name="habit[frequency]" id="frequency" value="<%= habit.frequency %>">
+        <button type="submit">Update Habit</button>
+    </form>
+    <a href="/habits">Back to Habits</a>
+</body>
+

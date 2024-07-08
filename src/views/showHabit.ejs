@@ -1,0 +1,118 @@
+
+
+<head>
+
+    <title>
+        <%= habit.name %>
+    </title>
+    
+    <link rel="stylesheet" href="/showhabit.css">
+</head>
+
+<body>
+    <h1>
+        <%= habit.name %>
+    </h1>
+    <p>Frequency: <%= habit.frequency %>
+    </p>
+    <div>
+        <h2>Schedule for <%= habit.name %></h2>
+        <% habit.completedDates.forEach(week => { %>
+            <table>
+                <thead>
+                    <tr>
+                        <th colspan="<%= week.weekdays.length%>">Week <%= week.weekNumber %></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <% week.weekdays.forEach(day => { %>
+                            <% if (day.startsWith("not"))  { %>
+                                <% var cleanedDay = day.slice(3); %>
+                                <th><%= cleanedDay %></th>
+                                <td>
+                                  
+                                    <img src="/images/cross.png">
+        
+                                </td>
+                            <% } else { %>
+                                <th><%= day %></th>
+                                <td>
+                                    <img src="/images/checked.png">
+                                </td>
+                            <% } %>
+                        <% }) %>
+                    </tr>
+                </tbody>
+            </table>
+        <% }); %>
+    </div>
+    
+    <form action="/habits/<%=habit._id%>/weekdetails">
+        <label for="week">Select a week:</label>
+        <input type="week" id="week" name="week">
+        <input type="submit">
+    </form>
+    <% if(locals.weeknumber){%>
+        <h1>Select/Unselect Days of the Week <%=locals.weeknumber%>
+        </h1>
+        <form action="/habits/<%=habit._id%>/weekdetails/<%=locals.weeknumber%>" method="POST">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Sunday</th>
+                        <th>Monday</th>
+                        <th>Tuesday</th>
+                        <th>Wednesday</th>
+                        <th>Thursday</th>
+                        <th>Friday</th>
+                        <th>Saturday</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <label><input type="radio" name="Sunday" value="yes"> Yes</label>
+                            <label><input type="radio" name="Sunday" value="no"> No</label>
+                            <label><input type="radio" name="Sunday" value="none" checked> None</label>
+                        </td>
+                        <td>
+                            <label><input type="radio" name="Monday" value="yes"> Yes</label>
+                            <label><input type="radio" name="Monday" value="no"> No</label>
+                            <label><input type="radio" name="Monday" value="none" checked> None</label>
+                        </td>
+                        <td>
+                            <label><input type="radio" name="Tuesday" value="yes"> Yes</label>
+                            <label><input type="radio" name="Tuesday" value="no"> No</label>
+                            <label><input type="radio" name="Tuesday" value="none" checked> None</label>
+                        </td>
+                        <td>
+                            <label><input type="radio" name="Wednesday" value="yes"> Yes</label>
+                            <label><input type="radio" name="Wednesday" value="no"> No</label>
+                            <label><input type="radio" name="Wednesday" value="none" checked> None</label>
+                        </td>
+                        <td>
+                            <label><input type="radio" name="Thursday" value="yes"> Yes</label>
+                            <label><input type="radio" name="Thursday" value="no"> No</label>
+                            <label><input type="radio" name="Thursday" value="none" checked> None</label>
+                        </td>
+                        <td>
+                            <label><input type="radio" name="Friday" value="yes"> Yes</label>
+                            <label><input type="radio" name="Friday" value="no"> No</label>
+                            <label><input type="radio" name="Friday" value="none" checked> None</label>
+                        </td>
+                        <td>
+                            <label><input type="radio" name="Saturday" value="yes"> Yes</label>
+                            <label><input type="radio" name="Saturday" value="no"> No</label>
+                            <label><input type="radio" name="Saturday" value="none" checked> None</label>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <button type="submit">Submit</button>
+        </form>
+
+
+        <%}%>
+            <a href="/habits">Back to Habits</a>
+</body>
