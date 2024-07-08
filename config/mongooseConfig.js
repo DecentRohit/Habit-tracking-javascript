@@ -5,7 +5,10 @@ const baseUrl = process.env.MONGODB || '0.0.0.0:27017';
 // const Url = 'mongodb://127.0.0.1:27017/habitTracker'
 
  const connectUsingMongoose = async ()=>{
-    try{await mongoose.connect(`mongodb://${baseUrl}/habitTracker`)
+    try{await mongoose.connect(`mongodb://${baseUrl}/habitTracker` , {
+           useNewUrlParser: true,
+           useUnifiedTopology: true
+       })
      console.log("connected using mongoose")
  }catch(err){
         console.log(err)
