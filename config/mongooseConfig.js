@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const Url = 'mongodb://127.0.0.1:27017/habitTracker'
+const Url = 'mongodb://0.0.0.0:27017/habitTracker'
 
  const connectUsingMongoose = async ()=>{
     try{await  mongoose.connect(Url)
