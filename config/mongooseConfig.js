@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const baseUrl = 127.0.0.1:27017 || '0.0.0.0:27017';
+const baseUrl = '127.0.0.1:27017' || '0.0.0.0:27017';
 
 // const Url = 'mongodb://127.0.0.1:27017/habitTracker'
 
