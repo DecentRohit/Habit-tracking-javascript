@@ -21,7 +21,7 @@
             <table>
                 <thead>
                     <tr>
-                        <th colspan="<%= week.weekdays.length%>">Week <%= week.weekNumber %></th>
+                        <th colspan="<%= week.weekdays.length%>">Week <%= week.weekNumber %><a id="deleteWeek" href="/habits/<%=habit._id%>/<%= week.weekNumber %>/deleteweek">  <img src="/images/bin.png"></a></th>
                     </tr>
                 </thead>
                 <tbody>
