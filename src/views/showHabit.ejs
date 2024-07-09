@@ -35,7 +35,16 @@
                                     <img src="/images/cross.png">
         
                                 </td>
-                            <% } else { %>
+                            <% }else if (day.startsWith("none"))  { %>
+                                <% var cleanedDay = day.slice(4); %>
+                                <th><%= cleanedDay %></th>
+                                <td>
+                                  
+                                    <img src="/images/none.png">
+        
+                                </td>
+                            <% }
+                             else { %>
                                 <th><%= day %></th>
                                 <td>
                                     <img src="/images/checked.png">
