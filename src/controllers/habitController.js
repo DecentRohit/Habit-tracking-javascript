@@ -10,7 +10,6 @@ module.exports.showNewHabitForm = async (req, res) => {
 
 }
 module.exports.addnewHabit = async (req, res) => {
-    console.log(req.params, req.query)
     const newHabit = req.body.habit;
     await Habit.create(newHabit);
     res.redirect('/habits');
@@ -22,6 +21,8 @@ module.exports.habitWeeks = async (req, res) => {
 
     res.render('showHabit', { habit });
 }
+
+
 module.exports.habitWeekdata = async (req, res) => {
     try {
         // console.log("body:", req.body);
@@ -36,7 +37,7 @@ module.exports.habitWeekdata = async (req, res) => {
                 yesDays[day] = day;
             if (value === 'no') {
                 yesDays[day] = 'not' + day;
-            }if (value === 'none') {
+            } if (value === 'none') {
                 yesDays[day] = 'none' + day;
             }
         }
@@ -65,6 +66,26 @@ module.exports.habitWeekdata = async (req, res) => {
     }
 };
 
+
+module.exports.deleteWeek = async (req, res) => {
+    try {
+        const weekNumber = req.params.weekNumber;
+
+        const habit = await Habit.findById(req.params.id);
+
+        const alreadyWeekIndex = habit.completedDates.findIndex(week => week.weekNumber === weekNumber);
+
+        if (alreadyWeekIndex !== -1) {
+            habit.completedDates.splice(alreadyWeekIndex, 1)
+            habit.save();
+            res.render('showHabit', { habit });
+        }
+
+    } catch (err) {
+        console.error(error);
+        res.status(500).send("Server error");
+    }
+}
 module.exports.habitDetails = async (req, res) => {
     const habit = await Habit.findById(req.params.id);
     res.render('showHabit', { habit });
