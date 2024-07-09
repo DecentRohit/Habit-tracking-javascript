@@ -19,9 +19,11 @@ const habitSchema = new mongoose.Schema({
     weekdays: {
       type: [String],
       enum: [
-        "Monday", "notMonday", "Tuesday", "notTuesday", "Wednesday", "notWednesday",
+       "Monday", "notMonday", "Tuesday", "notTuesday", "Wednesday", "notWednesday",
         "Thursday", "notThursday", "Friday", "notFriday", "Saturday", "notSaturday",
-        "Sunday", "notSunday"
+        "Sunday", "notSunday", "noneMonday", "noneTuesday", "noneWednesday",
+        "noneThursday", "noneFriday", "noneSaturday",
+        "noneSunday"
       ],
       validate: {
         validator: function(v) {
