@@ -13,9 +13,13 @@ router.post('/', habitController.addnewHabit);
 
 // SHOW - Show details of a habit
 router.get('/:id',habitController.habitDetails);
-
+//To save the habitweek number in res.locals for easy access
 router.get('/:id/weekdetails',habitController.habitWeeks);
+//To push the habit tracking week data
 router.post('/:id/weekdetails/:weekno',habitController.habitWeekdata);
+
+//To delete Selected week inside habit Schedule
+router.get('/:id/:weekNumber/deleteweek',habitController.deleteWeek);
 // EDIT - Show form to edit habit
 router.get('/:id/edit',habitController.editHabitForm);
 
