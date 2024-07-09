@@ -36,6 +36,8 @@ module.exports.habitWeekdata = async (req, res) => {
                 yesDays[day] = day;
             if (value === 'no') {
                 yesDays[day] = 'not' + day;
+            }if (value === 'none') {
+                yesDays[day] = 'none' + day;
             }
         }
         const weekdays = Object.values(yesDays);
